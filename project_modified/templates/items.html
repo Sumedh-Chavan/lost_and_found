@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Items{% endblock %}
+{% block content %}
+<h2>Lost and Found Items</h2>
+
+<!-- Display flash messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }} mt-3">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+
+<div class="list-group">
+    {% for item in items %}
+    <a href="/item/{{ item.item_id }}" class="list-group-item d-flex align-items-center">
+        {% if item.image %}
+        <img src="{{ url_for('static', filename=item.image) }}" alt="Item Image" class="img-thumbnail me-3" style="width: 100px; height: auto;">
+        {% endif %}
+        <div>
+            <h5>{{ item.description }}</h5>
+            <p>Category: {{ item.category }} | Type: {{ item.report_type }}</p>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+{% endblock %}

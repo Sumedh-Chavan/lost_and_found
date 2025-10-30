@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Conversations{% endblock %}
+{% block content %}
+<h2>Conversations</h2>
+
+<!-- Display flash messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }} mt-3">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<div class="list-group">
+    {% for conversation in conversations %}
+    <a href="{{ url_for('conversation_detail', user_id=conversation.other_user) }}" class="list-group-item">
+        <h5>{{ conversation.other_user }}</h5>
+        <p>{{ conversation.latest_message }}</p>
+        <small>Last updated: {{ conversation.time_stamp }}</small>
+    </a>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Add Item{% endblock %}
+{% block content %}
+<h2>Report Lost/Found Item</h2>
+<form method="post" action="/add_item" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea name="description" class="form-control" required></textarea>
+    </div>
+    <div class="form-group">
+        <label for="category">Category</label>
+        <select name="category" class="form-control" required>
+            <option value="" disabled selected>Select Category</option>
+            <option value="watch">Watch</option>
+            <option value="calculator">Calculator</option>
+            <option value="keys">Keys</option>
+            <option value="books">Books</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="report_type">Report Type</label>
+        <select name="report_type" class="form-control">
+            <option value="" disabled selected>Select Report Type</option>
+            <option value="lost">Lost</option>
+            <option value="found">Found</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="responsibility">Responsibility</label>
+        <select name="responsibility" class="form-control">
+            <option value="" disabled selected>Select Responsibility</option>
+            <option value="self">Self</option>
+            <option value="nodal_center1">Nodal Center 1</option>
+            <option value="nodal_center2">Nodal Center 2</option>
+            <option value="nodal_center3">Nodal Center 3</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="location" class="form-label">Location</label>
+        <select id="location" name="location[]" class="form-select" multiple>
+            <option disabled selected>Select Locations</option>
+            <option value="academic_complex">Academic Complex</option>
+            <option value="AC-101">AC-101</option>
+            <option value="main_audi">Main Audi</option>
+            <option value="boat_club_canteen">Boat Club Canteen</option>
+            <option value="meta_canteen">Meta Canteen</option>
+            <option value="database_lab">Database Lab</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="image">Upload Image</label>
+        <input type="file" name="image" class="form-control" accept="image/*">
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+</form>
+{% endblock %}

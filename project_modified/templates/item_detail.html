@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Item Details{% endblock %}
+{% block content %}
+<h2>{{ item.description }}</h2>
+{% if item.image %}
+<img src="{{ url_for('static', filename=item.image) }}" alt="Item Image" class="img-fluid mb-3">
+{% endif %}
+<p>Category: {{ item.category }}</p>
+<p>Type: {{ item.report_type }}</p>
+<p>Reported by: {{ item.username }}</p>
+
+{% if item.claim_status == 'not_claimed' %}
+<form method="post" action="/item/{{ item.item_id }}/claim">
+    <button type="submit" class="btn btn-warning mt-3">Claim Request</button>
+</form>
+{% else %}
+<p class="text-success mt-3">This item has already been claimed.</p>
+{% endif %}
+
+<h3>Comments</h3>
+<div class="list-group">
+    {% for comment in comments %}
+    <div class="list-group-item">
+        <p>{{ comment.comment }}</p>
+        <small>By {{ comment.username }} at {{ comment.time_stamp }}</small>
+    </div>
+    {% endfor %}
+</div>
+
+<h3>Add Comment</h3>
+<form method="post" action="/item/{{ item.item_id }}/comment">
+    <textarea name="comment" class="form-control"></textarea>
+    <button type="submit" class="btn btn-primary mt-3">Post Comment</button>
+</form>
+{% endblock %}
