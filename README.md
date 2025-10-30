@@ -1,6 +1,6 @@
-# Lost & Found (Flask) — simple README
+# Lost & Found
 
-A small Flask app to register users, report lost/found items, comment, and message other users. This repo is a minimal proof-of-concept I built earlier; it has a tiny frontend and core functionality but is **not production-ready**. Use it as a starting point.
+A small Flask app to register users, report lost/found items, comment, and message other users. This repo is a minimal proof-of-concept I built earlier; it has a tiny frontend and core functionality but is **not production-ready**.
 
 ---
 
